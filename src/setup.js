@@ -10,15 +10,6 @@ function init() {
     global.canvas = cvs
     global.ctx = cvs.getContext("2d");
     
-    let i = 0
-    let n = global.elevationDetail
-    global.elevations = new Array(n*n).fill(0)
-    for( let x=0 ; x<n ; x++ ){
-        for( let y=0 ; y<n ; y++ ){
-            global.elevations[i++] = 10*perlin.get(x/n,y/n)
-        }
-    }
-    
     resetRand()
     requestAnimationFrame(gameLoop);
 }

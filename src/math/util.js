@@ -1,20 +1,15 @@
 
     
     
-// project world coords to isometric 2d view
-// based on (0,0,0) 1x1x1 block edges 
-// defined in global.js
+// project map coords to isometric view
 function get2DCoords(x,y,z=null){
     
     if(z==null){
-        let i = y*global.elevationDetail + x
-        z = global.elevations[i]
+        let s = 2
+        z = 10*perlin.get(x*s,y*s)
     }
     
-    return global.blockOrigin
-        .add(global.blockUnits.x.mul(x))
-        .add(global.blockUnits.y.mul(y))
-        .add(global.blockUnits.z.mul(z))
+    return v(x,y-z*global.perlinMagnitude)
 }
     
     
@@ -22,6 +17,7 @@ function get2DCoords(x,y,z=null){
 var pi = Math.PI
 var pio2 = Math.PI/2
 var twopi = 2*Math.PI
+let phi = 1.618033988749894
 function v(){return new Vector(...arguments)}
 function vp(){return Vector.polar(...arguments)}
 

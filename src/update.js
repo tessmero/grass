@@ -34,9 +34,8 @@ function fitToContainer(){
       cvs.height = cvs.offsetHeight;
       lastCanvasOffsetWidth = cvs.offsetWidth
       lastCanvasOffsetHeight = cvs.offsetHeight
-        
-        var padding = 10; // (extra zoom IN) thickness of pixels CUT OFF around edges
-        var dimension = Math.max(cvs.width, cvs.height) + padding*2;
+      
+        var dimension = avg(cvs.width, cvs.height)
         global.canvasScale = dimension;
         global.canvasOffsetX = (cvs.width - dimension) / 2;
         global.canvasOffsetY = (cvs.height - dimension) / 2;
@@ -46,5 +45,7 @@ function fitToContainer(){
         var xr = -global.canvasOffsetX / dimension
         var yr = -global.canvasOffsetY / dimension
         global.screenCorners = [v(xr,yr),v(1-xr,yr),v(1-xr,1-yr),v(xr,1-yr)]
+        
+        global.groundY = null
     }
 }
