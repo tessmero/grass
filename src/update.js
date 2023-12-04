@@ -5,16 +5,41 @@ function update(dt) {
     fitToContainer()
     global.t += dt
     
-    // adjust wind speed based on mouse position
-    let targetWindSpeed = (global.mousePos.x - .5)*2
+    // sometimes randomly adjust target wind speed
+    if( global.autoWindCountdown <= 0 ){
+        global.targetWindSpeed = -1+Math.random()*2
+        if( Math.random() > .5 ){
+            global.targetWindSpeed = Math.sign(global.targetWindSpeed)
+        }
+        global.autoWindCountdown = global.autoWindDelay[0] + Math.random()*( global.autoWindDelay[1]- global.autoWindDelay[0])
+    } else {
+        global.autoWindCountdown -= dt
+    }
+    
+    // sometimes reset completely
+    if( global.autoResetCountdown <= 0 ){
+        
+        global.groundY = null
+        resetRand(true)
+        perlin.seed()
+        
+        global.autoResetCountdown = global.autoResetDelay
+    } else {
+        global.autoResetCountdown -= dt
+    }
+    
+    // adjust wind speed based on target wind speed position
     let minWindSpeed = .2
-    if( Math.abs(targetWindSpeed) < minWindSpeed ){
-        targetWindSpeed = Math.sign(targetWindSpeed)*minWindSpeed
+    if( Math.abs(global.targetWindSpeed) < minWindSpeed ){
+        let sgn = Math.sign(global.targetWindSpeed)
+        if(sgn == 0) sgn = 1
+        global.targetWindSpeed = sgn*minWindSpeed
     }
     let d = 1e-3*dt
-    if( Math.abs(global.windSpeed-targetWindSpeed) > 2*d ){
-        global.windSpeed -= d*Math.sign(global.windSpeed-targetWindSpeed)
+    if( Math.abs(global.windSpeed-global.targetWindSpeed) > 2*d ){
+        global.windSpeed -= d*Math.sign(global.windSpeed-global.targetWindSpeed)
     }
+        
     
     // advance pollen x-axis animation
     global.pollenX += global.windSpeed*dt

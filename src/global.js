@@ -29,9 +29,10 @@ const global = {
     elevationDetail: 40, // blades per screen length
     groundY: null,
     grassRadius: .003,
-    pollenRadius: .001,
+    pollenRadius: .005,
     
     // animation position
+    targetWindSpeed: 0,
     windSpeed: 0, 
     pollenX: 0,
     
@@ -39,5 +40,9 @@ const global = {
     canvasMousePos: v(0,0),     //pixels
     mousePos: v(0,0),           //virtual units
     
-    //debug
+    //
+    autoWindCountdown: 0, //ms
+    autoWindDelay: [3000,7000], //ms
+    autoResetCountdown: 30000, //ms
+    autoResetDelay: 30000, //ms
 }

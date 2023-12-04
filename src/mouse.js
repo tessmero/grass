@@ -12,6 +12,10 @@ function updateMousePos(event){
         (global.canvasMousePos.x-global.canvasOffsetX)/global.canvasScale, 
         (global.canvasMousePos.y-global.canvasOffsetY)/global.canvasScale
     )
+    
+    // adjust target wind speed based on mouse X
+    global.targetWindSpeed = (global.mousePos.x - .5)*2
+    global.autoWindCountdown = global.autoWindDelay
 }
 
 function mouseMove(e){

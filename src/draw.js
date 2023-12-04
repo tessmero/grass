@@ -65,7 +65,7 @@ function draw(fps, t) {
                     
                     // rolling effect near horizon
                     let r = (y-y0)/(y1-y0)
-                    y -= Math.max(0,1.5*(.5-r)/n)
+                    y -= Math.max(0,1.7*(.5-r)/n)
                 }
             }
         })
@@ -76,14 +76,14 @@ function draw(fps, t) {
     
     
     // draw pollen
-    ctx.fillStyle = 'rgba(255,255,255,.3)'
+    ctx.fillStyle = 'rgba(255,255,255,.1)'
     n = 10000
     let r = global.pollenRadius
     for( let i = 0 ; i < n ; i++ ){
         let dist = rand()
         let fallSpeed = 1e-6/(dist+.5)
         let maxy = .75-dist/2
-        let x = nnmod(rand()+5e-5*global.pollenX,1)
+        let x = x0 + (x1-x0)*nnmod(rand()+5e-5*global.pollenX,1)
         let y = nnmod((rand()+global.t*fallSpeed),maxy)
         ctx.fillRect( x-r,y-r,2*r,2*r )
     }
