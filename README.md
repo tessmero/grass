@@ -1,6 +1,6 @@
-Procedural grass blows in the wind.
+Procedural rolling hills terrain with animated grass blowing in the wind.
 
-Clock or touch to adjust wind direction.
+Click or touch to adjust wind direction.
 
 ## Demo
 
