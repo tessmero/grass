@@ -14,7 +14,10 @@ function updateMousePos(event){
     )
     
     // adjust target wind speed based on mouse X
-    global.targetWindSpeed = (global.mousePos.x - .5)*2
+    global.targetWindSpeed = (global.mousePos.x - .5)*4
+    if(Math.abs(global.targetWindSpeed) > 1){
+        global.targetWindSpeed = Math.sign(global.targetWindSpeed)
+    }        
     global.autoWindCountdown = global.autoWindDelay
 }
 

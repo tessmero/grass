@@ -41,8 +41,8 @@ function update(dt) {
     }
         
     
-    // advance pollen x-axis animation
-    global.pollenX += global.windSpeed*dt
+    // advance wind animation
+    global.pollenX += 4*global.windSpeed*dt
 }
 
 
